@@ -106,7 +106,7 @@ celerybeat.pid
 #.env
 .venv
 .DS_Store
-env/
+#env/
 venv/
 ENV/
 env.bak/
