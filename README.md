@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
 <img src="https://github.com/mage-ai/assets/blob/main/mascots/mascots-shorter.jpeg?raw=true">
 </div>
@@ -85,3 +86,6 @@ This repository should have the following structure:
 2. [Mage Slack](https://www.mage.ai/chat): a good place to ask questions or get help from the Mage team.
 3. [DTC Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2_workflow_orchestration): a good place to get help from the community on course-specific inquireies.
 4. [Mage GitHub](https://github.com/mage-ai/mage-ai): a good place to open issues or feature requests.
+=======
+# mage_dataengineeringzoomcamp
+>>>>>>> 94a81670c84d4b57939e138046c6a8bcfedd07b5
