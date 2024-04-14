@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "friendly_herbalist"}, "timestamp": 1707928971, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "green_taxi_etl_copy"}, "timestamp": 1707929028, "user": null}

@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "load_api_gcs_partitioned_parquet_copy"}, "timestamp": 1706950294, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "load_api_gcs_partitioned_parquet_copy"}, "timestamp": 1706950520, "user": null}
