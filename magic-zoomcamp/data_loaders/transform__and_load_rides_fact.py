@@ -15,7 +15,9 @@ def load_data(*args, **kwargs):
     from pyspark.sql import functions as F
     from pyspark.sql.functions import col,avg
     from pyspark.sql import types
-    
+    bucket_name = kwargs['context']['bucket_name']
+    project_id = kwargs['context']['project_id']
+    bigquery_dataset = kwargs['context']['bigquery_dataset']
     rides_schema = types.StructType([
         types.StructField('Trip_Id', types.LongType(),True),
         types.StructField('User_Id', types.LongType(),True),
@@ -29,7 +31,7 @@ def load_data(*args, **kwargs):
     df = kwargs['spark'] \
             .read \
             .schema(rides_schema) \
-            .parquet('gs://zoomcamp_b/bike_dataset/raw/rides/*/*/') 
+            .parquet(f'gs://{bucket_name}/bike_dataset/raw/rides/*/*/') 
 
     avg_year_of_birth = df.select(avg(col('Year_of_Birth'))).collect()[0][0]
 
@@ -46,8 +48,8 @@ def load_data(*args, **kwargs):
     # data.show()
     data.write \
         .format("bigquery") \
-        .option("project", "forward-ace-411913") \
-        .option("dataset", "zoomcamp_bigquery") \
+        .option("project", project_id) \
+        .option("dataset", bigquery_dataset) \
         .option("partitionField", "Trip_starttime") \
         .option("partitionType","MONTH") \
         .option("table", "Rides_Fact") \

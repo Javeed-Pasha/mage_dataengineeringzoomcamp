@@ -4,21 +4,13 @@ if 'data_exporter' not in globals():
 
 @data_exporter
 def export_data(data, *args, **kwargs):
-    """
-    Exports data to some source.
-
-    Args:
-        data: The output from the upstream parent block
-        args: The output from any additional upstream blocks (if applicable)
-
-    Output (optional):
-        Optionally return any object and it'll be logged and
-        displayed when inspecting the block run.
-    """
+    bucket_name = kwargs['context']['bucket_name']
+    project_id = kwargs['context']['project_id']
+    bigquery_dataset = kwargs['context']['bigquery_dataset']
 
     df = kwargs['spark'] \
         .read \
-        .parquet('gs://zoomcamp_b/bike_dataset/raw/nomenclature/*') 
+        .parquet(f'gs://{bucket_name}/bike_dataset/raw/nomenclature/*') 
     
 
     from pyspark.sql.functions import regexp_extract, col, when
@@ -32,8 +24,8 @@ def export_data(data, *args, **kwargs):
             
     data.write \
             .format("bigquery") \
-            .option("project", "forward-ace-411913") \
-            .option("dataset", "zoomcamp_bigquery") \
+            .option("project", project_id) \
+            .option("dataset", bigquery_dataset) \
             .option("table", "Dim_Stations") \
             .mode("overwrite") \
             .save()

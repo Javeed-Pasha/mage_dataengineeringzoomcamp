@@ -65,11 +65,11 @@ api_url_list= [
 ]
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/src/my-creds.json'
-bucket_name = 'zoomcamp_b'
-project_id = 'forward-ace-411913'
+# bucket_name = 'zoomcamp_b'
+# project_id = 'forward-ace-411913'
 
-table_name= 'bike_dataset'
-root_path=f'{bucket_name}/{table_name}/raw'
+# table_name= 'bike_dataset'
+# root_path=f'{bucket_name}/{table_name}/raw'
 
 
 # function to yield one file at a time to download
@@ -94,8 +94,10 @@ def file_generator(api_url_list):
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
-
-    
+    bucket_name = kwargs['context']['bucket_name']
+    project_id = kwargs['context']['project_id']
+    table_name= 'bike_dataset'
+    root_path=f'{bucket_name}/{table_name}/raw'
 # Iterate over files using the generator
     for pdf in file_generator(api_url_list):
         # print("Processing files:")  
