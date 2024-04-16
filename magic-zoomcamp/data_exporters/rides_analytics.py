@@ -53,9 +53,7 @@ def export_data_to_big_query(data, *args, **kwargs):
     #     table_id,
     #     if_exists='replace',  # Specify resolution policy if table name already exists
     # )
-# [
-#   "export_data_to_big_query() takes 1 positional argument but 2 were given"
-# ]
+
     df.write \
         .format("bigquery") \
         .option("project", project_id) \
