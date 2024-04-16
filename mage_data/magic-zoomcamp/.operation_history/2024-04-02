@@ -1,3 +1,0 @@
-{"operation": "create", "resource": {"type": "pipeline", "uuid": "load_api_gcs_partitioned_parquet_copy"}, "timestamp": 1712085496, "user": null}
-{"operation": "create", "resource": {"type": "pipeline", "uuid": "quiet_flower"}, "timestamp": 1712091204, "user": null}
-{"operation": "create", "resource": {"type": "pipeline", "uuid": "mindful_destiny"}, "timestamp": 1712098743, "user": null}
