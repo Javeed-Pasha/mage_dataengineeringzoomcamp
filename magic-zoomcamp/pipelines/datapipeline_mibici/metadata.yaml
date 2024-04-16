@@ -10,12 +10,12 @@ blocks:
   language: python
   name: Create_Spark_Session
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: custom
   upstream_blocks: []
   uuid: create_spark_session
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     file_source:
@@ -29,30 +29,47 @@ blocks:
   language: python
   name: Ingest_BikeData_to_GCS
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks:
   - create_spark_session
   uuid: ingest_bikedata_to_gcs
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
-  - stop_spark_session
+  - rides_analytics
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: Transform_ And_Load_Rides_Fact
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks:
   - ingest_bikedata_to_gcs
   uuid: transform__and_load_rides_fact
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - rides_analytics
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Transform _load _DIm_Stations
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - ingest_bikedata_to_gcs
+  uuid: transform__load__dim_stations
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
@@ -61,14 +78,15 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: Transform _load _DIm_Stations
+  name: rides_analytics
   retry_config: null
   status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - ingest_bikedata_to_gcs
-  uuid: transform__load__dim_stations
+  - transform__and_load_rides_fact
+  - transform__load__dim_stations
+  uuid: rides_analytics
 - all_upstream_blocks_executed: false
   color: pink
   configuration: {}
@@ -83,8 +101,7 @@ blocks:
   timeout: null
   type: custom
   upstream_blocks:
-  - transform__and_load_rides_fact
-  - transform__load__dim_stations
+  - rides_analytics
   uuid: stop_spark_session
 cache_block_output_in_memory: false
 callbacks: []
@@ -109,7 +126,7 @@ spark_config:
   use_custom_session: true
 tags: []
 type: python
-updated_at: '2024-04-15 14:21:41'
+updated_at: '2024-04-16 14:07:11'
 uuid: datapipeline_mibici
 variables_dir: /root/.mage_data/magic-zoomcamp
 widgets: []
