@@ -172,4 +172,5 @@ scratch*
 *secrets*.json
 #magic-zoomcamp
 *.json
-
+/mage_data/.operation_history
+/mage_data/.cache
