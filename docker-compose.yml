@@ -23,7 +23,7 @@ services:
       - 6789:6789
     volumes:
       - .:/home/src/
-      - ~/.gc/my-creds.json:/home/src/my-creds.json
+      #- ~/.gc/my-creds.json:/home/src/my-creds.json
     restart: on-failure:5
   postgres:
     image: postgres:14
